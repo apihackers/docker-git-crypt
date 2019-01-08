@@ -22,7 +22,5 @@ RUN apk add --no-cache gnupg && \
 
 ENV GPG_PRIVATE_KEY ""
 
-WORKDIR /workspace
-VOLUME /workspace
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
