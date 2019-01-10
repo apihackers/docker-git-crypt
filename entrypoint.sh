@@ -13,4 +13,10 @@ if [[ ! -z "${GPG_PRIVATE_KEY}" ]]; then
     echo "$GPG_PRIVATE_KEY" > gpg --import
 fi
  
-git-crypt "$@"
+if [[ ! -z "${CI_JOB_ID}" ]]; then
+    git-crypt "$@"
+else
+    # We are in a CI pipeline
+    # Just spawn a shell for compatibility
+    /bin/ash
+fi
